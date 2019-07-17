@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+if [ "$1" = "8" ]; then
+	sudo update-java-alternatives -s  /usr/lib/jvm/java-1.8.0-openjdk-amd64
+elif [ "$1" = "9" ]; then
+	sudo update-alternatives --set java /usr/lib/jvm/jdk-9/bin/java
+elif [ "$1" = "11" ]; then
+	sudo update-java-alternatives -s  /usr/lib/jvm/java-1.11.0-openjdk-amd64
+elif [ "$1" = "12" ]; then
+	sudo update-alternatives --set java /usr/lib/jvm/jdk-12.0.2/bin/java
+else
+    echo "Not a valid java version"
+fi

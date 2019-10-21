@@ -3,13 +3,14 @@ alias q='exit'
 alias c='clear'
 
 #Docker
-alias d-rm-containers='docker container rm $(docker ps -a -q)'
+alias d-remove-containers='docker container rm $(docker ps -a -q)'
+alias d-rmi='docker rmi $(docker images -a -q)'
 alias d-stop-containers='docker container stop $(docker ps -a -q)'
-alias d-list-containers='docker container ps'
+alias d-list-containers='docker ps -a'
 
 #Find text in all files
 findForMe (){	
-    grep -r $1 *
+    grep -r . -e "$1"
 }
 
 #Set java version
@@ -27,3 +28,7 @@ javaVer() {
 	fi
 }
 
+#JWTdecode (need to have jq installed)
+jwtDecode() {
+  sed 's/\./\n/g' <<< $(cut -d. -f1,2 <<< $1) | base64 --decode | jq
+}
